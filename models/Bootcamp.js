@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // create Bootcamp Schema
-const BootcampSchema = new mogoose.Schema({
+const BootcampSchema = new mongoose.Schema({
     name: {
         type: String,
         requir:[ true, 'Please add a name'],
@@ -32,25 +32,25 @@ const BootcampSchema = new mogoose.Schema({
         type: String,
         require: [true, 'please add an address']
     },
-    location:{
-        // GeoJNSON Poing
-        type: {
-            type: String,
-            enum: ['Point'],
-            required: true
-          },
-          coordinates: {
-            type: [Number],
-            required: true,
-            index: '2dsphere'
-          },
-          formattedAddress: String,
-          street: String,
-          city: String,
-          state: String,
-          zipcode: String,
-          country: String,
-    },
+    // location:{
+    //     // GeoJNSON Poing
+    //     type: {
+    //         type: String,
+    //         enum: ['Point'],
+    //         required: true
+    //       },
+    //       coordinates: {
+    //         type: [Number],
+    //         required: true,
+    //         index: '2dsphere'
+    //       },
+    //       formattedAddress: String,
+    //       street: String,
+    //       city: String,
+    //       state: String,
+    //       zipcode: String,
+    //       country: String,
+    // },
     careers:{
         // Array of Strings
         type: [String],
@@ -91,7 +91,7 @@ const BootcampSchema = new mogoose.Schema({
         default: false
     },
     createdAt:{
-        type: Data,
+        type: Date,
         default: Date.now
     }
 });
