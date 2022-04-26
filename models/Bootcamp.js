@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const BootcampSchema = new mongoose.Schema({
     name: {
         type: String,
-        requir:[ true, 'Please add a name'],
+        required:[ true, 'Please add a name'],
         unique : true,
         trim: true,
         maxlength : [50, 'Name can not be longer than 50 characters']
@@ -12,7 +12,7 @@ const BootcampSchema = new mongoose.Schema({
     sluge: String,
     description:{
         type: String,
-        requir:[ true, 'Please add a description'],
+        required:[ true, 'Please add a description'],
         maxlength : [500, 'Description can not be longer than 500 characters']
     },
     website:{
@@ -30,7 +30,7 @@ const BootcampSchema = new mongoose.Schema({
     },
     address:{
         type: String,
-        require: [true, 'please add an address']
+        required: [true, 'please add an address']
     },
     // location:{
     //     // GeoJNSON Poing
