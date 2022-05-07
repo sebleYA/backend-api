@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const slugify = require ('slugify')
 // create Bootcamp Schema
 const BootcampSchema = new mongoose.Schema({
     name: {
@@ -32,25 +32,23 @@ const BootcampSchema = new mongoose.Schema({
         type: String,
         required: [true, 'please add an address']
     },
-    // location:{
-    //     // GeoJNSON Poing
-    //     type: {
-    //         type: String,
-    //         enum: ['Point'],
-    //         required: true
-    //       },
-    //       coordinates: {
-    //         type: [Number],
-    //         required: true,
-    //         index: '2dsphere'
-    //       },
-    //       formattedAddress: String,
-    //       street: String,
-    //       city: String,
-    //       state: String,
-    //       zipcode: String,
-    //       country: String,
-    // },
+    location:{
+        // GeoJNSON Poing
+        type: {
+            type: String,
+            enum: ['Point'],
+          },
+          coordinates: {
+            type: [Number],
+            index: '2dsphere'
+          },
+          formattedAddress: String,
+          street: String,
+          city: String,
+          state: String,
+          zipcode: String,
+          country: String,
+    },
     careers:{
         // Array of Strings
         type: [String],
@@ -95,5 +93,14 @@ const BootcampSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
+// create bootcamp slug from the name
+
+BootcampSchema.pre('save', function(next){
+    this.sluge = slugify(this.name, { lower: true})
+    next()
+});
+
+
 
 module.exports = mongoose.model('Bootcamp', BootcampSchema)
