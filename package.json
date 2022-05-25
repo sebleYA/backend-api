@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production node server",
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "release": "release-it",
+    "version": "auto-changelog --template changelog.hbs -p && git add CHANGELOG.md"
   },
   "author": "Seblewongel Abera",
   "license": "ISC",
@@ -31,6 +33,8 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "auto-changelog": "^2.4.0",
+    "nodemon": "^2.0.15",
+    "release-it": "^15.0.0"
   }
 }
