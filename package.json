@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node server",
     "dev": "nodemon server",
-    "release": "release-it",
+    "release": "release-it --no-npm",
     "version": "auto-changelog --template changelog.hbs -p && git add CHANGELOG.md"
   },
   "author": "Seblewongel Abera",
