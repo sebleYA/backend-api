@@ -1,5 +1,11 @@
 {
   "github": {
     "release": true
-  }
+  },
+    "git": {
+      "changelog": "npx auto-changelog --stdout --commit-limit false --unreleased --template changelog.hbs"
+    },
+    "hooks": {
+      "after:bump": "npx auto-changelog -p"
+    }
 }
