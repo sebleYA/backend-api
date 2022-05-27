@@ -78,7 +78,7 @@ app.use('/api/v1/reviews', reviews);
 // error handling
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 8080;
 
 const server = app.listen(
   PORT,
