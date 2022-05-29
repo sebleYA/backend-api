@@ -1,5 +1,7 @@
 # DevCamper API
 
+![ecs](https://user-images.githubusercontent.com/61608724/170886779-87b55624-6cca-419b-92e8-326b23088091.jpeg)
+
 > Backend API for DevCamper application, whcih is a bootcamp directrory website
 
 ## Usage
