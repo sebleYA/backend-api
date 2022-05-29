@@ -115,4 +115,4 @@ jobs:
         with:
           task-definition: ${{ steps.update-task-def.outputs.task-definition }}
           service: aws-ecs-backend-api-service
-          cluster: devcamper-api
+          cluster: aws-ecs-backend-api-v1
