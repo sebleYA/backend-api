@@ -11,11 +11,11 @@ Parameters:
 Resources:
   ACMCertificate:
     Type: AWS::CertificateManager::Certificate
-    Properties: 
-      DomainName: !Sub "dev.vip.${DomainName}"
+    Properties:
+      DomainName: !Sub 'vip.${DomainName}'
       DomainValidationOptions:
-        - DomainName: !Sub "dev.vip.${DomainName}"
-          ValidationDomain: !Sub "dev.vip.${DomainName}"
+        - DomainName: !Sub 'vip.${DomainName}'
+          ValidationDomain: !Sub 'vip.${DomainName}'
       ValidationMethod: DNS
   Cluster:
     Type: AWS::ECS::Cluster
