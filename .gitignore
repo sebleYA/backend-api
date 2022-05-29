@@ -6,3 +6,5 @@ _data/
 seeder.js
 
 Makefile
+
+.vscode/
