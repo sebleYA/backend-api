@@ -1,8 +1,8 @@
 const path = require('path');
 const express = require('express');
-const swaggerUi = require('swagger-ui-express');
-const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./swagger.yaml');
+// const swaggerUi = require('swagger-ui-express');
+// const YAML = require('yamljs');
+// const swaggerDocument = YAML.load('./swagger.yaml');
 const morgan = require('morgan');
 const colors = require('colors');
 const fileupload = require('express-fileupload');
@@ -28,6 +28,7 @@ const courses = require('./routes/courses');
 const auth = require('./routes/auth');
 const users = require('./routes/users');
 const reviews = require('./routes/reviews');
+const swagger = require('./routes/swagger-doc');
 
 const app = express();
 // Body parser
@@ -70,7 +71,7 @@ app.use(cors());
 // Set statidc folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/', swagger);
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
 app.use('/api/v1/courses', courses);
