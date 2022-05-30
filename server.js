@@ -1,5 +1,8 @@
 const path = require('path');
 const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const colors = require('colors');
@@ -68,6 +71,7 @@ app.use(cors());
 // Set statidc folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
 app.use('/api/v1/courses', courses);
