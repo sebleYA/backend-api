@@ -1,0 +1,902 @@
+openapi: 3.0.0
+info:
+  title: DevCamper API
+  description: >-
+    The DevCamper API is organized around REST. The API has predictable
+    resource-oriented URLs, accepts form-encoded request bodies, and returns
+    JSON-encoded responses using standard HTTP response codes and secure authentication. 
+    
+
+    The API endpoint uses Bearer authentication and it provides methods for managing and creating courses, reviews, users and authentication.
+  contact:
+    name: "Backend Engineer: Seble"
+    url: https://github.com/sebleYA/backend-api/issues/new
+  version: '1.0'
+  license:
+    url: http://opensource.org/licenses/MIT
+    name: MIT
+  termsOfService: https://github.com/sebleYA/backend-api/
+servers:
+  - url: http://localhost:8080/api/v1
+    description: address when running checkout api locally
+paths:
+  /bootcamps:
+    get:
+      tags:
+        - Bootcamps
+      summary: Get All Bootcamps
+      description: Fetch all bootcamps from database. Includes paginations, filtering, etc
+      operationId: GetAllBootcamps
+      parameters:
+        - name: Content-Type
+          in: header
+          description: JSON Type
+          required: true
+          style: simple
+          schema:
+            enum:
+              - application/json
+            type: string
+            example: application/json
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+        - Bootcamps
+      summary: Create New Bootcamp
+      description: >-
+        Add new bootcamp to database. Must be authenticated and must be
+        publisher or admin
+      operationId: CreateNewBootcamp
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNewBootcampRequest'
+            example:
+              name: Test Bootcamp
+              description: >-
+                Is coding your passion? Codemasters will give you the skills and
+                the tools to become the best developer possible. We specialize
+                in front end and full stack web development
+              website: https://devcentral.com
+              phone: (444) 444-4444
+              email: enroll@devcentral.com
+              address: 45 Upper College Rd Kingston RI 02881
+              careers:
+                - Mobile Development
+                - Web Development
+                - Data Science
+                - Business
+              housing: false
+              jobAssistance: true
+              jobGuarantee: true
+              acceptGi: true
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /bootcamps/5d725a1b7b292f5f8ceff788:
+    get:
+      tags:
+        - Bootcamps
+      summary: Get Single Bootcamp
+      description: Get a single bootcamp by ID
+      operationId: GetSingleBootcamp
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /bootcamps/5d725a1b7b292f5f8ceff788/photo:
+    put:
+      tags:
+        - Bootcamps
+      summary: Update Bootcamp
+      description: Update a single bootcamp by its id and add photo
+      operationId: UpdateBootcamp
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /bootcamps/radius/02115/3000:
+    get:
+      tags:
+        - Bootcamps
+      summary: Get Bootcamps By Distance
+      description: Get bootcamps within a radius of a specific zipcode
+      operationId: GetBootcampsByDistance
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /bootcamps/62871c91a49bd0e11173c09f:
+    delete:
+      tags:
+        - Bootcamps
+      summary: Delete Bootcamp
+      description: Delete Bootcamp from database by Id
+      operationId: DeleteBootcamp
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /courses:
+    get:
+      tags:
+        - Courses
+      summary: Get All Courses
+      description: Get all courses in database
+      operationId: GetAllCourses
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /bootcamps/5d713995b721c3bb38c1f5d0/courses:
+    get:
+      tags:
+        - Courses
+      summary: Get Courses For Bootcamps
+      description: Get the specific courses for a bootcamp
+      operationId: GetCoursesForBootcamps
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /courses/5d725c84c4ded7bcb480eaa0:
+    get:
+      tags:
+        - Courses
+      summary: Get Single Courses
+      description: Get a single course by Id
+      operationId: GetSingleCourses
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /bootcamps/5d725a1b7b292f5f8ceff788/courses:
+    post:
+      tags:
+        - Courses
+      summary: Create Course
+      description: Create a course for specific bootcamp
+      operationId: CreateCourse
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCourseRequest'
+            example:
+              title: Full Stack Web Development
+              description: >-
+                In this course you will learn full stack web development, first
+                learning all about the frontend with HTML/CSS/JS/Vue and then
+                the backend with Node.js/Express/MongoDB
+              weeks: 12
+              tuition: 10000
+              minimumSkill: intermediate
+              scholarhipsAvailable: true
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /courses/5d725a4a7b292f5f8ceff789:
+    put:
+      tags:
+        - Courses
+      summary: Update Course
+      description: Update course in database
+      operationId: UpdateCourse
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCourseRequest'
+            example:
+              tuition: 13000
+              minimumSkill: advanced
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Courses
+      summary: Delete Course
+      description: Remove course from database
+      operationId: DeleteCourse
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: Register User
+      description: Add user to database with encrypted password
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUserRequest'
+            example:
+              name: John Doe
+              email: john@gmail.com
+              password: '123456'
+              role: publisher
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Login User
+      description: Login user
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginUserRequest'
+            example:
+              email: john@gmail.com
+              password: '123456'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/me:
+    get:
+      tags:
+        - Authentication
+      summary: Get Logged in User via Token
+      operationId: GetLoggedinUserviaToken
+      parameters:
+        - name: Content-TYpe
+          in: header
+          description: JSON Tyupe
+          required: true
+          style: simple
+          schema:
+            enum:
+              - application/json
+            type: string
+            example: application/json
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/forgotpassword:
+    post:
+      tags:
+        - Authentication
+      summary: Forgot Password
+      description: Generate password and send email
+      operationId: ForgotPassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+            example:
+              email: john@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/resetpassword/4cbe52d5d57abb7ff4ad2d00ae495c750cc9d801:
+    put:
+      tags:
+        - Authentication
+      summary: Reset Password
+      description: Reset password using token
+      operationId: ResetPassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+            example:
+              password: '1234567'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/updatedetails:
+    put:
+      tags:
+        - Authentication
+      summary: Update User Details
+      description: Update logged in user name and email
+      operationId: UpdateUserDetails
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDetailsRequest'
+            example:
+              email: john@mail.com
+              name: John Doe
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/updatepassword:
+    put:
+      tags:
+        - Authentication
+      summary: Update Password
+      description: >-
+        Update logged in user password, send in the body currentPassword and
+        newPassword
+      operationId: UpdatePassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePasswordRequest'
+            example:
+              currentPassword: '1234567'
+              newPassword: '123456'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/logout:
+    get:
+      tags:
+        - Authentication
+      summary: Logout User
+      description: Clear token cookie
+      operationId: LogoutUser
+      parameters:
+        - name: Content-TYpe
+          in: header
+          description: JSON Tyupe
+          required: true
+          style: simple
+          schema:
+            enum:
+              - application/json
+            type: string
+            example: application/json
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users:
+    get:
+      tags:
+        - Users
+      summary: Get All Users
+      description: Get all users (admin)
+      operationId: GetAllUsers
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+        - Users
+      summary: Create User
+      description: Add user to database (admin)
+      operationId: CreateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+            example:
+              name: seble A
+              email: seble2@gmail.com
+              password: '123456'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/5c8a1d5b0190b214360dc040:
+    get:
+      tags:
+        - Users
+      summary: Get Single User
+      description: Get single user by id (admin)
+      operationId: GetSingleUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/628a98b2671e5d204a42fc2b:
+    put:
+      tags:
+        - Users
+      summary: Update User
+      description: Update user in database (admin)
+      operationId: UpdateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+            example:
+              email: seble@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Users
+      summary: Delete User
+      description: Delete user form database (admin)
+      operationId: DeleteUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews:
+    get:
+      tags:
+        - Reviews
+      summary: Get All Reviews
+      description: >-
+        Get all reviews from database and populate with bootcamp name and
+        description
+      operationId: GetAllReviews
+      parameters:
+        - name: Content-TYpe
+          in: header
+          description: JSON Tyupe
+          required: true
+          style: simple
+          schema:
+            enum:
+              - application/json
+            type: string
+            example: application/json
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /bootcamps/5d725a037b292f5f8ceff787/reviews:
+    get:
+      tags:
+        - Reviews
+      summary: Get Review For Bootcamp
+      description: Fetch the reviews for a specific bootcamp
+      operationId: GetReviewForBootcamp
+      parameters:
+        - name: Content-TYpe
+          in: header
+          description: JSON Tyupe
+          required: true
+          style: simple
+          schema:
+            enum:
+              - application/json
+            type: string
+            example: application/json
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews/5d7a514b5d2c12c7449be024:
+    get:
+      tags:
+        - Reviews
+      summary: Get Single Review
+      description: >-
+        Fetch a review from database by id and populate Bootcamp name and
+        description
+      operationId: GetSingleReview
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /bootcamps/5d725a1b7b292f5f8ceff788/reviews:
+    post:
+      tags:
+        - Reviews
+      summary: Add Review For Bootcamp
+      description: Insert review for specifice bootcamp
+      operationId: AddReviewForBootcamp
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddReviewForBootcampRequest'
+            example:
+              title: Nice Bootcamp
+              text: 'I learned a lot '
+              rating: '8'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews/628b292a369f840b08d083da:
+    put:
+      tags:
+        - Reviews
+      summary: Update Review
+      description: Update review in database
+      operationId: UpdateReview
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateReviewRequest'
+            example:
+              text: ' not bad'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews/628bcd7fb32bec262b9cce80:
+    delete:
+      tags:
+        - Reviews
+      summary: Delete Review
+      description: Remove a review from database
+      operationId: DeleteReview
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    CreateNewBootcampRequest:
+      title: CreateNewBootcampRequest
+      required:
+        - name
+        - description
+        - website
+        - phone
+        - email
+        - address
+        - careers
+        - housing
+        - jobAssistance
+        - jobGuarantee
+        - acceptGi
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        website:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+        careers:
+          type: array
+          items:
+            type: string
+          description: ''
+        housing:
+          type: boolean
+        jobAssistance:
+          type: boolean
+        jobGuarantee:
+          type: boolean
+        acceptGi:
+          type: boolean
+      example:
+        name: Test Bootcamp
+        description: >-
+          Is coding your passion? Codemasters will give you the skills and the
+          tools to become the best developer possible. We specialize in front
+          end and full stack web development
+        website: https://devcentral.com
+        phone: (444) 444-4444
+        email: enroll@devcentral.com
+        address: 45 Upper College Rd Kingston RI 02881
+        careers:
+          - Mobile Development
+          - Web Development
+          - Data Science
+          - Business
+        housing: false
+        jobAssistance: true
+        jobGuarantee: true
+        acceptGi: true
+    CreateCourseRequest:
+      title: CreateCourseRequest
+      required:
+        - title
+        - description
+        - weeks
+        - tuition
+        - minimumSkill
+        - scholarhipsAvailable
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        weeks:
+          type: integer
+          format: int32
+        tuition:
+          type: integer
+          format: int32
+        minimumSkill:
+          type: string
+        scholarhipsAvailable:
+          type: boolean
+      example:
+        title: Full Stack Web Development
+        description: >-
+          In this course you will learn full stack web development, first
+          learning all about the frontend with HTML/CSS/JS/Vue and then the
+          backend with Node.js/Express/MongoDB
+        weeks: 12
+        tuition: 10000
+        minimumSkill: intermediate
+        scholarhipsAvailable: true
+    UpdateCourseRequest:
+      title: UpdateCourseRequest
+      required:
+        - tuition
+        - minimumSkill
+      type: object
+      properties:
+        tuition:
+          type: integer
+          format: int32
+        minimumSkill:
+          type: string
+      example:
+        tuition: 13000
+        minimumSkill: advanced
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+        - name
+        - email
+        - password
+        - role
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+      example:
+        name: John Doe
+        email: john@gmail.com
+        password: '123456'
+        role: publisher
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: john@gmail.com
+        password: '123456'
+    ForgotPasswordRequest:
+      title: ForgotPasswordRequest
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+      example:
+        email: john@gmail.com
+    ResetPasswordRequest:
+      title: ResetPasswordRequest
+      required:
+        - password
+      type: object
+      properties:
+        password:
+          type: string
+      example:
+        password: '1234567'
+    UpdateUserDetailsRequest:
+      title: UpdateUserDetailsRequest
+      required:
+        - email
+        - name
+      type: object
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+      example:
+        email: john@mail.com
+        name: John Doe
+    UpdatePasswordRequest:
+      title: UpdatePasswordRequest
+      required:
+        - currentPassword
+        - newPassword
+      type: object
+      properties:
+        currentPassword:
+          type: string
+        newPassword:
+          type: string
+      example:
+        currentPassword: '1234567'
+        newPassword: '123456'
+    CreateUserRequest:
+      title: CreateUserRequest
+      required:
+        - name
+        - email
+        - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: seble A
+        email: seble2@gmail.com
+        password: '123456'
+    UpdateUserRequest:
+      title: UpdateUserRequest
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+      example:
+        email: seble@gmail.com
+    AddReviewForBootcampRequest:
+      title: AddReviewForBootcampRequest
+      required:
+        - title
+        - text
+        - rating
+      type: object
+      properties:
+        title:
+          type: string
+        text:
+          type: string
+        rating:
+          type: string
+      example:
+        title: Nice Bootcamp
+        text: 'I learned a lot '
+        rating: '8'
+    UpdateReviewRequest:
+      title: UpdateReviewRequest
+      required:
+        - text
+      type: object
+      properties:
+        text:
+          type: string
+      example:
+        text: ' not bad'
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security:
+  - bearer: []
+tags:
+  - name: Bootcamps
+    description: Bootcamps CRUD functionality
+  - name: Courses
+    description: Create, read, update and delete coursed
+  - name: Authentication
+    description: >-
+      Routes for user authentication including register, login, reset password,
+      etc
+  - name: Users
+    description: CURD functionality for users only available to admins
+  - name: Reviews
+    description: Manage course reviews
