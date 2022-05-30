@@ -18,7 +18,7 @@ info:
   termsOfService: https://github.com/sebleYA/backend-api/
 servers:
   - url: http://localhost:8080/api/v1
-    description: address when running checkout api locally
+    description: address when running DevCamper api locally
 paths:
   /bootcamps:
     get:
