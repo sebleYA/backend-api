@@ -25,7 +25,7 @@ paths:
       tags:
         - Bootcamps
       summary: Get All Bootcamps
-      description: Fetch all bootcamps from database. Includes paginations, filtering, etc
+      description: Fetch all bootcamps from the database. Includes paginations, filtering, etc
       operationId: GetAllBootcamps
       parameters:
         - name: Content-Type
@@ -41,6 +41,9 @@ paths:
       responses:
         '200':
           description: ''
+          headers: {}
+        '400':
+          description: 'Not found'
           headers: {}
       deprecated: false
     post:
