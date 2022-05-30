@@ -8,3 +8,5 @@ seeder.js
 Makefile
 
 .vscode/
+
+.env

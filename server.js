@@ -3,7 +3,6 @@ const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./swagger.yaml');
-const dotenv = require('dotenv');
 const morgan = require('morgan');
 const colors = require('colors');
 const fileupload = require('express-fileupload');
@@ -18,7 +17,9 @@ const errorHandler = require('./middlerware/error');
 const connectDB = require('./config/db');
 
 // load env vars
-dotenv.config({ path: './config/config.env' });
+// dotenv.config({ path: './config/config.env' });
+// Load the enviroment variables
+require('dotenv').config();
 console.log('test', process.env.NODE_ENV, process.env.MONGO_URI, process.env.GEOCODER_PROVIDER);
 // connect to database
 connectDB();
